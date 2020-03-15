@@ -1,4 +1,4 @@
-package TPs.TP1;
+package TPs.TP1.Ejercicio_3;
 
 public class Ej3 {
 

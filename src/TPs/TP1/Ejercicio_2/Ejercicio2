@@ -1,0 +1,18 @@
+a) Burbujeo: Consiste en comparar elementos consecutivos en cada paso a lo largo del arreglo.
+   Cada vez que se realiza una comparación, los elementos se intercambian entre si en caso de no estar en orden.
+   Se le llama de burbuja, porque en la ordenación los elementos mas ligeros suben en la lista.
+   Se pasa varias veces a través del arreglo en forma secuencial.
+   Cada paso consiste en la comparación de cada elemento con su sucesor, y el intercambio de los dos elementos si no
+   están en el orden correcto.
+   Una vez acomodado el más grande, prosigue a encontrar  y acomodar el siguiente más grande comparando de nuevo los
+   números desde el inicio, y así sigue hasta ordenar todos los elementos el arreglo.
+
+   Selección: Consiste en encontrar el elemento menor ( o mayor) de la lista y colocarlo en la primera posición,
+   a continuación, el elemento siguiente menor (o mayor) se lleva a la segunda posición y así sucesivamente hasta que
+   queda ordenado. Es parecido al algoritmo de burbujeo pero la forma de ordenamiento es diferente.
+
+   Inserción: Hacer comparaciones, en donde en cada iteración forma una lista ordenada.
+   En la primer iteración compara los dos primeros elementos y los ordena.
+   En la siguiente, toma el tercer elemento y lo compara con los dos anteriores, colocando a este en el
+   lugar que corresponda.
+   Y así sucesivamente, hasta que queda ordenado.
