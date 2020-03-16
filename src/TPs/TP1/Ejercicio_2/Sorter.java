@@ -29,6 +29,37 @@ public class Sorter<T extends Comparable<T>> {
         }
     }
 
+    // Recursive selection sort.
+    public void recurSelectionSort(T[] values, int length, int index)
+    {
+
+        // Return when index and size are same
+        if (index == length)
+            return;
+
+        // calling minimum index function for minimum index
+        int k = minIndex(values, index, length-1);
+
+        // Swapping when index and minimum index are not same
+        if (k != index){
+            swap(values, k ,index);
+        }
+        // Recursively calling selection sort function
+        recurSelectionSort(values, length, index + 1);
+    }
+
+    public int minIndex(T[] values, int i, int j)
+    {
+        if (i == j)
+            return i;
+
+        // Find minimum of remaining elements
+        int k = minIndex(values, i + 1, j);
+
+        // Return minimum of current and remaining.
+        return (values[i].compareTo(values[k]) < 0)? i : k;
+    }
+
     public void insertionSort(T[] values){
         for (int i = 1; i < values.length; i++) {
             T key = values[i];

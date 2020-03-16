@@ -16,3 +16,5 @@ a) Burbujeo: Consiste en comparar elementos consecutivos en cada paso a lo largo
    En la siguiente, toma el tercer elemento y lo compara con los dos anteriores, colocando a este en el
    lugar que corresponda.
    Y así sucesivamente, hasta que queda ordenado.
+
+f) Una página que nos pareció interesante es: https://stackabuse.com/sorting-algorithms-in-java/

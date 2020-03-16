@@ -14,4 +14,7 @@ public class RandomIntArrayGenerator {
         return array;
     }
 }
-//T(n)=3n+4
+/*T(n)=3n+4
+If n is a big number the algorithm takes longer to run.
+With n = 5 it takes 19. with n = 5000 it takes 15004 and with n = 10000 it takes up to 30004
+ */
