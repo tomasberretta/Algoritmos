@@ -1,6 +1,6 @@
-package TPs.TP1.Ejercicio_2;
+package TPs.TP1.Ejercicio_2.Ej2_b_d_e_g;
 
-import TPs.TP1.Ejercicio_3.Auto;
+import TPs.TP1.Ejercicio_3.Car;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -46,16 +46,16 @@ public class SorterTest {
     }
 
     @Test
-    public void autoComparasionTest(){
-        Auto car = new Auto(1);
-        Auto car2 = new Auto(2);
-        Auto car3 = new Auto(3);
-        Auto car4 = new Auto(4);
-        Auto car5 = new Auto(5);
+    public void carComparasionTest(){
+        Car car = new Car(1);
+        Car car2 = new Car(2);
+        Car car3 = new Car(3);
+        Car car4 = new Car(4);
+        Car car5 = new Car(5);
 
-        Auto[] autos = {car2, car4, car, car5, car3};
+        Car[] cars = {car2, car4, car, car5, car3};
 
-        sorter.bubbleSort(autos);
-        Assert.assertEquals(new Auto[]{car, car2, car3, car4, car5}, autos);
+        sorter.bubbleSort(cars);
+        Assert.assertEquals(new Car[]{car, car2, car3, car4, car5}, cars);
     }
 }
