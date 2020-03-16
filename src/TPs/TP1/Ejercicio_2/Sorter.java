@@ -24,8 +24,8 @@ public class Sorter<T extends Comparable<T>> {
                 if(values[j].compareTo(values[minIndex]) < 0){
                     minIndex = j;
                 }
-                swap(values, minIndex, i);
             }
+            swap(values, minIndex, i);
         }
     }
 

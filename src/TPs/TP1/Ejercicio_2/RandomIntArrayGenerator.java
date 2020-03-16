@@ -14,6 +14,4 @@ public class RandomIntArrayGenerator {
         return array;
     }
 }
-/*If n is a big number the algorithm takes longer to run.
-With n = 5 it takes between 0 and 1ms. with n = 5000 it takes 2ms and with n = 10000 it takes up to 4ms
- */
+//T(n)=3n+4

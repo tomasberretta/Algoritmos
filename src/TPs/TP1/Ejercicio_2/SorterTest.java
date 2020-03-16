@@ -20,7 +20,7 @@ public class SorterTest {
     @Test
     public void selectionSortShouldOrderElementsOfAnyType(){
         sorter.selectionSort(intArray);
-        sorter.bubbleSort(stringArray);
+        sorter.selectionSort(stringArray);
 
         Assert.assertEquals(stringArray, new String[]{"a", "a", "b", "c", "h", "y"});
         Assert.assertEquals(intArray, new Integer[]{1,2,4,5,8});
@@ -28,8 +28,8 @@ public class SorterTest {
 
     @Test
     public void insertionSortShouldOrderElementsOfAnyType(){
-        sorter.selectionSort(intArray);
-        sorter.bubbleSort(stringArray);
+        sorter.insertionSort(intArray);
+        sorter.insertionSort(stringArray);
 
         Assert.assertEquals(stringArray, new String[]{"a", "a", "b", "c", "h", "y"});
         Assert.assertEquals(intArray, new Integer[]{1,2,4,5,8});
