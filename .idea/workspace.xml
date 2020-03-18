@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc279328-44b8-4f69-8e38-3670e55fb7bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_1/BinaryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_1/SequencialTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_1/Sequencial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_1/Sequencial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/Ejercicio2" beforeDir="false" afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/Ej2_a_f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/RandomIntArrayGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/Ej2_c/RandomIntArrayGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/RandomIntArrayGeneratorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/Ej2_c/RandomIntArrayGeneratorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/Ej2_b_d_e_g/Sorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/SorterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_2/Ej2_b_d_e_g/SorterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_3/Auto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_3/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_3/Ej3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TPs/TP1/Ejercicio_3/Ej3Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TPs/TP2/Blast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TPs/TP2/Blast.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -66,7 +57,20 @@
       <recent name="C:\Users\Tom\IdeaProjects\Algoritmos\src\TPs" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SequencialTest.seqSearchTest">
+  <component name="RunManager" selected="Application.Blast">
+    <configuration name="Blast" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TPs.TP2.Blast" />
+      <module name="Algoritmos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TPs.TP2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BinaryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Algoritmos" />
       <extension name="coverage">
@@ -130,28 +134,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SorterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Algoritmos" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="TPs.TP1.Ejercicio_2.Ej2_b_d_e_g.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="TPs.TP1.Ejercicio_2.Ej2_b_d_e_g" />
-      <option name="MAIN_CLASS_NAME" value="TPs.TP1.Ejercicio_2.Ej2_b_d_e_g.SorterTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Blast" />
         <item itemvalue="JUnit.SequencialTest.seqSearchTest" />
         <item itemvalue="JUnit.BinaryTest" />
         <item itemvalue="JUnit.BinaryTest.binarySearchTest" />
         <item itemvalue="JUnit.Ej3Test.mergeTest" />
-        <item itemvalue="JUnit.SorterTest" />
       </list>
     </recent_temporary>
   </component>
@@ -193,38 +182,38 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="382" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738@0.0.1366.738" timestamp="1584390283514" />
-    <state width="1323" height="422" key="GridCell.Tab.0.bottom" timestamp="1584391393701">
+    <state width="1323" height="422" key="GridCell.Tab.0.bottom" timestamp="1584543189152">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="422" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1584391393701" />
-    <state width="1323" height="422" key="GridCell.Tab.0.center" timestamp="1584391393691">
+    <state width="1323" height="422" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1584543189152" />
+    <state width="1323" height="422" key="GridCell.Tab.0.center" timestamp="1584543189151">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="422" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1584391393691" />
-    <state width="1323" height="422" key="GridCell.Tab.0.left" timestamp="1584391393691">
+    <state width="1323" height="422" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1584543189151" />
+    <state width="1323" height="422" key="GridCell.Tab.0.left" timestamp="1584543189151">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="422" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1584391393691" />
-    <state width="1323" height="422" key="GridCell.Tab.0.right" timestamp="1584391393691">
+    <state width="1323" height="422" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1584543189151" />
+    <state width="1323" height="422" key="GridCell.Tab.0.right" timestamp="1584543189152">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="422" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1584391393691" />
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1584391235227">
+    <state width="1323" height="422" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1584543189152" />
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1584391823555">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1584391235227" />
-    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1584391235227">
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1584391823555" />
+    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1584391823553">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1584391235227" />
-    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1584391235227">
+    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1584391823553" />
+    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1584391823553">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1584391235227" />
-    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1584391235227">
+    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1584391823553" />
+    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1584391823554">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1584391235227" />
+    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1584391823554" />
     <state x="492" y="287" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584378878162">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
