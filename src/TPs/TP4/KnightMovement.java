@@ -2,7 +2,13 @@ package TPs.TP4;
 
 import java.util.Arrays;
 
+/**********************************************************************************************************************
+ ************** @author Grupo 6 : Agustina Abalo, Tomas Berretta, Pedro Bogunovich, Tomas Bruno************************
+ *********************************************************************************************************************/
+
 public class KnightMovement {
+    // The board is a 9x9 grid and the knight position is given by an int array with the form [a, b]
+    // with a and b between 0-9.
 
     static int[][] board = {
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -16,7 +22,7 @@ public class KnightMovement {
     };
 
     public static void main(String[] args) {
-        //Does all possible third moves and shows all possible fourth moves
+        // Does all possible third moves and shows all possible fourth moves.
         printMoves(3, new int[]{0,0});
     }
 
@@ -28,6 +34,7 @@ public class KnightMovement {
         showMoves(n,0,n,stacks);
     }
 
+    // Generates possible moves and stacks them, then prints each of them will popping them.
     static void showMoves(int n,int i, int counter, Stack<int[]>[] stacks){
         while(stacks[0].size != 0){
             if(n == 0){
@@ -58,6 +65,7 @@ public class KnightMovement {
         }
     }
 
+    // Given an initial position returns a stack with every possible move the knight can make.
     static Stack<int[]> findPossibleMoves(int[][] board, int[] pos)
     {
         int[] X = { 2, 1, -1, -2, -2, -1, 1, 2 };
