@@ -1,5 +1,9 @@
 package TPs.TP6;
 
+/**********************************************************************************************************************
+ ************** @author Grupo 6 : Agustina Abalo, Tomas Berretta, Pedro Bogunovich, Tomas Bruno************************
+ *********************************************************************************************************************/
+
 public class Organism implements Comparable<Organism> {
     String code;
     String type;

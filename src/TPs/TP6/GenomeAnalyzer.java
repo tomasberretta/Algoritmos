@@ -2,6 +2,11 @@ package TPs.TP6;
 
 import java.util.ArrayList;
 
+
+/**********************************************************************************************************************
+ ************** @author Grupo 6 : Agustina Abalo, Tomas Berretta, Pedro Bogunovich, Tomas Bruno************************
+ *********************************************************************************************************************/
+
 public class GenomeAnalyzer {
     static AVLTree<Organism> organismAVLTree;
     static ArrayList<Organism> organisms;
