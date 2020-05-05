@@ -16,42 +16,49 @@ class AVLTree <T extends Comparable<T>>{
         this.root = root;
     }
 
-    int height(DoubleNode<T> doubleNode) {
+    AVLTree<T> getLeft() {
+        return new AVLTree<>(root.left);
+    }
+    AVLTree<T> getRight() {
+        return new AVLTree<>(root.right);
+    }
+
+    int getHeight(DoubleNode<T> doubleNode) {
         if (doubleNode == null)
             return 0;
         return doubleNode.height;
     }
 
-    DoubleNode<T> rightRotate(DoubleNode<T> y) {
+    int getBalance(DoubleNode<T> doubleNode) {
+        if (doubleNode == null) return 0;
+        return getHeight(doubleNode.left) - getHeight(doubleNode.right);
+    }
+
+    DoubleNode<T> rightRotation(DoubleNode<T> y) {
         DoubleNode<T> x = y.left;
         DoubleNode<T> z = x.right;
         x.right = y;
         y.left = z;
-        y.height = Math.max(height(y.left), height(y.right)) + 1;
-        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
         return x;
     }
 
-    DoubleNode<T> leftRotate(DoubleNode<T> x) {
+    DoubleNode<T> leftRotation(DoubleNode<T> x) {
         DoubleNode<T> y = x.right;
         DoubleNode<T> z = y.left;
         y.left = x;
         x.right = z;
-        x.height = Math.max(height(x.left), height(x.right)) + 1;
-        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
         return y;
-    }
-
-    int getBalance(DoubleNode<T> doubleNode) {
-        if (doubleNode == null) return 0;
-        return height(doubleNode.left) - height(doubleNode.right);
     }
 
     T search(T data){
         return search(this.root, data);
     }
 
-    T search (DoubleNode<T> doubleNode, T data){
+    private T search (DoubleNode<T> doubleNode, T data){
         if (doubleNode == null) return null;
         if(data.compareTo(doubleNode.data) < 0) return (T) search(doubleNode.left, data);
         else if (data.compareTo(doubleNode.data) > 0) return (T) search(doubleNode.right, data);
@@ -63,7 +70,7 @@ class AVLTree <T extends Comparable<T>>{
         return isInTree(this.root, data);
     }
 
-    boolean isInTree(DoubleNode<T> doubleNode, T data){
+    private boolean isInTree(DoubleNode<T> doubleNode, T data){
         if (doubleNode == null) return false;
         if(doubleNode.data == null) return false;
         if(data.compareTo(doubleNode.data) < 0) return isInTree(doubleNode.left, data);
@@ -76,7 +83,7 @@ class AVLTree <T extends Comparable<T>>{
         this.root = this.insert(this.root, data);
     }
 
-    DoubleNode<T> insert(DoubleNode<T> doubleNode, T data) {
+    private DoubleNode<T> insert(DoubleNode<T> doubleNode, T data) {
         if (doubleNode == null)
             return (new DoubleNode<T>(data));
         if (data.compareTo((T)doubleNode.data) < 0)
@@ -85,27 +92,28 @@ class AVLTree <T extends Comparable<T>>{
             doubleNode.right = insert(doubleNode.right, data);
         else
             return doubleNode;
-        doubleNode.height = 1 + Math.max(height(doubleNode.left),
-                height(doubleNode.right));
+        doubleNode.height = 1 + Math.max(getHeight(doubleNode.left),
+                getHeight(doubleNode.right));
         int balance = getBalance(doubleNode);
         //Left Case
         if (balance > 1 && data.compareTo((T) doubleNode.left.data) < 0)
-            return rightRotate(doubleNode);
+            return rightRotation(doubleNode);
         //Right Case
         if (balance < -1 && data.compareTo((T) doubleNode.right.data) > 0)
-            return leftRotate(doubleNode);
+            return leftRotation(doubleNode);
         //Left Elbow Case
         if (balance > 1 && data.compareTo((T) doubleNode.left.data) > 0) {
-            doubleNode.left = leftRotate(doubleNode.left);
-            return rightRotate(doubleNode);
+            doubleNode.left = leftRotation(doubleNode.left);
+            return rightRotation(doubleNode);
         }
         //Right Elbow Case
         if (balance < -1 && data.compareTo((T) doubleNode.right.data) < 0) {
-            doubleNode.right = rightRotate(doubleNode.right);
-            return leftRotate(doubleNode);
+            doubleNode.right = rightRotation(doubleNode.right);
+            return leftRotation(doubleNode);
         }
         return doubleNode;
     }
+
     DoubleNode<T> minValueNode(DoubleNode<T> doubleNode){
         DoubleNode<T> current = doubleNode;
         while (current.left != null)
@@ -117,58 +125,51 @@ class AVLTree <T extends Comparable<T>>{
         this.root = this.delete(this.root, data);
     }
 
-    DoubleNode<T> delete(DoubleNode<T> node, T data) {
-        if (node == null)
-            return node;
-        if (data.compareTo(node.data) < 0)
-            node.left = delete(node.left, data);
-        else if (data.compareTo((T) node.data) > 0)
-            node.right = delete(node.right, data);
+    private DoubleNode<T> delete(DoubleNode<T> doubleNode, T data) {
+        if (doubleNode == null)
+            return doubleNode;
+        if (data.compareTo(doubleNode.data) < 0)
+            doubleNode.left = delete(doubleNode.left, data);
+        else if (data.compareTo((T) doubleNode.data) > 0)
+            doubleNode.right = delete(doubleNode.right, data);
         else {
-            if ((node.left == null) || (node.right == null)) {
+            if ((doubleNode.left == null) || (doubleNode.right == null)) {
                 DoubleNode<T> temp = null;
-                if (temp == node.left)
-                    temp = node.right;
+                if (temp == doubleNode.left)
+                    temp = doubleNode.right;
                 else
-                    temp = node.left;
+                    temp = doubleNode.left;
 
                 if (temp == null) {
-                    temp = node;
-                    node = null;
+                    temp = doubleNode;
+                    doubleNode = null;
                 }
                 else
-                    node = temp;
+                    doubleNode = temp;
             }
             else {
-                DoubleNode<T> temp = minValueNode(node.right);
-                node.data = temp.data;
-                node.right = delete(node.right, (T) temp.data);
+                DoubleNode<T> temp = minValueNode(doubleNode.right);
+                doubleNode.data = temp.data;
+                doubleNode.right = delete(doubleNode.right, (T) temp.data);
             }
         }
-        if (node == null)
-            return node;
-        node.height = Math.max(height(node.left), height(node.right)) + 1;
-        int balance = getBalance(node);
-        if (balance > 1 && getBalance(node.left) >= 0)
-            return rightRotate(node);
-        if (balance > 1 && getBalance(node.left) < 0){
-            node.left = leftRotate(node.left);
-            return rightRotate(node);
+        if (doubleNode == null)
+            return doubleNode;
+        doubleNode.height = Math.max(getHeight(doubleNode.left), getHeight(doubleNode.right)) + 1;
+        int balance = getBalance(doubleNode);
+        if (balance > 1 && getBalance(doubleNode.left) >= 0)
+            return rightRotation(doubleNode);
+        if (balance > 1 && getBalance(doubleNode.left) < 0){
+            doubleNode.left = leftRotation(doubleNode.left);
+            return rightRotation(doubleNode);
         }
-        if (balance < -1 && getBalance(node.right) <= 0)
-            return leftRotate(node);
-        if (balance < -1 && getBalance(node.right) > 0) {
-            node.right = rightRotate(node.right);
-            return leftRotate(node);
+        if (balance < -1 && getBalance(doubleNode.right) <= 0)
+            return leftRotation(doubleNode);
+        if (balance < -1 && getBalance(doubleNode.right) > 0) {
+            doubleNode.right = rightRotation(doubleNode.right);
+            return leftRotation(doubleNode);
         }
-        return node;
-    }
-
-    AVLTree<T> getLeft() {
-        return new AVLTree<>(root.left);
-    }
-    AVLTree<T> getRight() {
-        return new AVLTree<>(root.right);
+        return doubleNode;
     }
 
     public boolean isEmpty(){

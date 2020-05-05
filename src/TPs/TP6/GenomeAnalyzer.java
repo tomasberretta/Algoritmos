@@ -14,7 +14,7 @@ public class GenomeAnalyzer {
     public static void main(String[] args) {
         organisms = new ArrayList<>();
         organismAVLTree = new AVLTree<>();
-        organisms.add(new Organism("Covid", "Virus", "Very bad", 12));
+        addOrganismsToList();
         organismAVLTree = convertListIntoTree(organisms);
         menuScreen();
     }
@@ -87,10 +87,10 @@ public class GenomeAnalyzer {
                     Organism temp2 = new Organism(code4);
                     if (organismAVLTree.isInTree(temp2)){
                         Organism toShow = organismAVLTree.search(temp2);
-                        System.out.println(toShow.getCode()+ "\n"+
-                                toShow.getType()+ "\n"+
-                                toShow.getDescription()+ "\n"+
-                                toShow.getSize());
+                        System.out.println("Code: "+ toShow.getCode()+ "\n"+
+                                "Type: "+toShow.getType()+ "\n"+
+                                "Description: "+toShow.getDescription()+ "\n"+
+                                "Size: "+toShow.getSize());
                     }else{
                         System.out.println(code4 + " was not found in the tree");
                     }
@@ -116,5 +116,19 @@ public class GenomeAnalyzer {
             System.out.println(AVLTree.root.data.getCode());
             showInOrden(AVLTree.getRight());
         }
+    }
+
+    private static void addOrganismsToList() {
+        organisms.add(new Organism("SV40", "Virus", "A polyomavirus that is found in both monkeys and humans.", 6));
+        organisms.add(new Organism("HIV", "Virus", "Species of Lentivirus that infect humans and over time cause acquired immunodeficiency syndrome.", 10));
+        organisms.add(new Organism("Phage", "Virus", "A single-stranded DNA virus that infects Escherichia coli, and the first DNA-based genome to be sequenced.", 50));
+        organisms.add(new Organism("Inflz", "Bacterium", "A Gram-negative, coccobacillary, facultatively anaerobic pathogenic bacterium of the family Pasteurellaceae.", 2));
+        organisms.add(new Organism("Coli", "Bacterium", "A Gram-negative, facultative anaerobic, rod-shaped, coliform bacterium of the genus Escherichia that is commonly found in the lower intestine of warm-blooded organisms.", 5));
+        organisms.add(new Organism("Genli", "Plant", "A carnivorous species in the genus Genlisea that is endemic to Brazil and found only in campos rupestres vegetation.", 61));
+        organisms.add(new Organism("Sacch", "Fungus", "A species of yeast that has been instrumental in winemaking, baking, and brewing since ancient times.", 12));
+        organisms.add(new Organism("Asper", "Fungus", "One of many species of filamentous fungi in the phylum Ascomycota.", 30));
+        organisms.add(new Organism("Pscus", "Mammal", "An endangered great ape and one of the two species making up the genus Pan.", 3));
+        organisms.add(new Organism("Muscu", "Mammal", "A small mammal of the order Rodentia, characteristically having a pointed snout, large rounded ears, and a long and hairy tail.", 3));
+        organisms.add(new Organism("Hsap", "Mammal", "The only extant human species.", 3));
     }
 }
