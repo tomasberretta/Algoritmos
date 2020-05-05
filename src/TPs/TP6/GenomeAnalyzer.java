@@ -2,28 +2,27 @@ package TPs.TP6;
 
 import java.util.ArrayList;
 
-
 /**********************************************************************************************************************
  ************** @author Grupo 6 : Agustina Abalo, Tomas Berretta, Pedro Bogunovich, Tomas Bruno************************
  *********************************************************************************************************************/
 
 public class GenomeAnalyzer {
-    static AVLTree<Organism> organismAVLTree;
+    static BinarySearchTree<Organism> organismBinarySearchTree;
     static ArrayList<Organism> organisms;
 
     public static void main(String[] args) {
         organisms = new ArrayList<>();
-        organismAVLTree = new AVLTree<>();
+        organismBinarySearchTree = new BinarySearchTree<>();
         addOrganismsToList();
-        organismAVLTree = convertListIntoTree(organisms);
+        organismBinarySearchTree = convertListIntoTree(organisms);
         menuScreen();
     }
 
-    public static AVLTree<Organism> convertListIntoTree (ArrayList<Organism> organismList){
+    public static BinarySearchTree<Organism> convertListIntoTree (ArrayList<Organism> organismList){
         for (Organism organism: organismList) {
-            organismAVLTree.insert(organism);
+            organismBinarySearchTree.insert(organism);
         }
-        return organismAVLTree;
+        return organismBinarySearchTree;
     }
 
     public static void menuScreen (){
@@ -49,15 +48,15 @@ public class GenomeAnalyzer {
                     System.out.println("Enter Genome Size");
                     int size = Scanner.getInt("");
                     Organism organism = new Organism(code, type, description, size);
-                    organismAVLTree.insert(organism);
+                    organismBinarySearchTree.insert(organism);
                     System.out.println(code+ " Added to tree");
                     break;
                 case 2:
                     System.out.println("Enter Code");
                     String code2 = Scanner.getString("");
                     Organism temp = new Organism(code2);
-                    if (organismAVLTree.isInTree(temp)){
-                        organismAVLTree.delete(temp);
+                    if (organismBinarySearchTree.isInTree(temp)){
+                        organismBinarySearchTree.delete(temp);
                         System.out.println(code2+ " removed from tree");
                     }else{
                         System.out.println(code2 + " was not found in the tree");
@@ -73,9 +72,9 @@ public class GenomeAnalyzer {
                     System.out.println("Enter New Genome Size");
                     int size2 = Scanner.getInt("");
                     Organism organism2 = new Organism(code3, type2, description2, size2);
-                    if (organismAVLTree.isInTree(organism2)){
-                        organismAVLTree.delete(organism2);
-                        organismAVLTree.insert(organism2);
+                    if (organismBinarySearchTree.isInTree(organism2)){
+                        organismBinarySearchTree.delete(organism2);
+                        organismBinarySearchTree.insert(organism2);
                         System.out.println(code3+ " modified from tree");
                     }else{
                         System.out.println(code3 + " was not found in the tree");
@@ -85,8 +84,8 @@ public class GenomeAnalyzer {
                     System.out.println("Enter Code");
                     String code4 = Scanner.getString("");
                     Organism temp2 = new Organism(code4);
-                    if (organismAVLTree.isInTree(temp2)){
-                        Organism toShow = organismAVLTree.search(temp2);
+                    if (organismBinarySearchTree.isInTree(temp2)){
+                        Organism toShow = organismBinarySearchTree.search(temp2);
                         System.out.println("Code: "+ toShow.getCode()+ "\n"+
                                 "Type: "+toShow.getType()+ "\n"+
                                 "Description: "+toShow.getDescription()+ "\n"+
@@ -97,7 +96,7 @@ public class GenomeAnalyzer {
                     break;
                 case 5:
                     System.out.println("Tree: ");
-                    showInOrden(organismAVLTree);
+                    showInOrden(organismBinarySearchTree);
                     break;
                 default:
                     System.out.println("Please enter a valid option");
@@ -106,15 +105,15 @@ public class GenomeAnalyzer {
         }
     }
 
-    static void showInOrden (AVLTree<Organism> AVLTree){
-        if (AVLTree.isEmpty()) System.out.println("");
-        else if(AVLTree.getLeft().isEmpty() && AVLTree.getRight().isEmpty()){
-            System.out.println(AVLTree.root.data.getCode());
+    static void showInOrden (BinarySearchTree<Organism> binarySearchTree){
+        if (binarySearchTree.isEmpty()) System.out.println("");
+        else if(binarySearchTree.getLeft().isEmpty() && binarySearchTree.getRight().isEmpty()){
+            System.out.println(binarySearchTree.getRoot().getCode());
         }
         else{
-            showInOrden(AVLTree.getLeft());
-            System.out.println(AVLTree.root.data.getCode());
-            showInOrden(AVLTree.getRight());
+            showInOrden(binarySearchTree.getLeft());
+            System.out.println(binarySearchTree.getRoot().getCode());
+            showInOrden(binarySearchTree.getRight());
         }
     }
 
