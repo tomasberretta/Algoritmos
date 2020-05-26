@@ -12,4 +12,12 @@ public class Client {
         waitTime = 0;
         ticketNumber = (int)(Math.random() * ((100000 - 10000) + 1)) + 10000;
     }
+
+    public void increaseWaitTime() {
+        waitTime += 30;
+    }
+
+    public int getWaitTime() {
+        return waitTime;
+    }
 }
