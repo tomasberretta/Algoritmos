@@ -19,7 +19,8 @@ public class MSystem {
     public int meanTime (){
         StackD<Client> temp = new StackD<>();
         int counter = 0;
-        for (int i = 0; i < clients.size; i++) {
+        int clientsSize = clients.size;
+        for (int i = 0; i < clientsSize; i++) {
             if(!clients.isEmpty()){
                 Client toPop = clients.peek();
                 temp.push(toPop);
