@@ -2,81 +2,77 @@ package TPs.TPComparacionArboles;
 
 public class RBTree<T> {
 
-    private RBNode<T> header;
+    private RBNode<T> headNode;
     private static RBNode nullNode;
 
-    static
-    {
+    static {
         nullNode = new RBNode(0);
         nullNode.left = nullNode;
         nullNode.right = nullNode;
     }
 
-    private static final int BLACK = 1;
-    private static final int RED   = 0;
-
-    private RBNode<T> current;
-    private RBNode<T> parent;
-    private RBNode<T> grand;
-    private RBNode<T> great;
+    private RBNode<T> currentNode;
+    private RBNode<T> parentNode;
+    private RBNode<T> grandparentNode;
+    private RBNode<T> greatgrandparentNode;
 
     public RBTree( ) {
-        header      = new RBNode<>( null );
+        headNode = new RBNode<>( null );
         nullNode = new RBNode<>( null );
         nullNode.left = nullNode.right = nullNode;
-        header.left = header.right = nullNode;
+        headNode.left = headNode.right = nullNode;
     }
 
-    public RBTree ( RBNode<T> aTreeNode){
+    public RBTree(RBNode<T> aTreeNode){
         nullNode = new RBNode<>( null );
         nullNode.left = nullNode.right = nullNode;
-        header = aTreeNode;
+        headNode = aTreeNode;
     }
 
-    private int compare(Comparable<T> item, RBNode<T> t ) {
-        if( t == header )
+    private int compare(Comparable<T> data, RBNode<T> rbNode ) {
+        if( rbNode == headNode)
             return 1;
         else
-            return item.compareTo((T) t.element);
+            return data.compareTo((T) rbNode.element);
     }
 
     public RBTree<T> getRoot() {
-        return new RBTree<>(header.right);
+        return new RBTree<>(headNode.right);
     }
 
     public RBTree<T> getLeft() {
-        return new RBTree<>(header.right.left);
+        return new RBTree<>(headNode.right.left);
     }
 
     public RBTree<T> getRight() {
-        return  new RBTree<>(header.right.right);
+        return  new RBTree<>(headNode.right.right);
     }
 
-    public void insert( Comparable<T> item ) {
-        current = parent = grand = header;
+    public void insert (Comparable<T> item ) {
+        currentNode = parentNode = grandparentNode = headNode;
         nullNode.element = (T) item;
 
-        while(compare( item, current ) != 0) {
-            great = grand; grand = parent; parent = current;
-            current = compare( item, current ) < 0 ?
-                    current.left : current.right;
+        while(compare( item, currentNode) != 0) {
+            greatgrandparentNode = grandparentNode; grandparentNode = parentNode; parentNode = currentNode;
+            currentNode = compare( item, currentNode) < 0 ?
+                    currentNode.left : currentNode.right;
 
             // Check if two red children; fix if so
-            if( current.left.color == RED && current.right.color == RED )
-                handleReorient( item );
+            if( currentNode.left.color == 0 && currentNode.right.color == 0 )
+                rearrangeTreeOrder( item );
         }
 
-        current = new RBNode<T>((T) item, nullNode, nullNode );
+        currentNode = new RBNode<T>((T) item, nullNode, nullNode );
 
         // Attach to parent
-        if( compare( item, parent ) < 0 )
-            parent.left = current;
+        if( compare( item, parentNode) < 0 )
+            parentNode.left = currentNode;
         else
-            parent.right = current;
-        handleReorient( item );
+            parentNode.right = currentNode;
+        rearrangeTreeOrder( item );
     }
 
-    private RBNode<T> rotate(Comparable<T> item, RBNode<T> parent ) {
+    private RBNode<T> rotateTree(Comparable<T> item, RBNode<T> parent ) {
         if( compare( item, parent ) < 0 )
             return parent.left = compare( item, parent.left ) < 0 ?
                     rotateWithLeftChild( parent.left )  :  // LL
@@ -101,101 +97,60 @@ public class RBTree<T> {
         return k2;
     }
 
-    private void handleReorient( Comparable<T> item ) {
+    private void rearrangeTreeOrder(Comparable<T> item) {
         // Do the color flip
-        current.color = RED;
-        current.left.color = BLACK;
-        current.right.color = BLACK;
+        currentNode.color = 0;
+        currentNode.left.color = 1;
+        currentNode.right.color = 1;
 
-        if( parent.color == RED ){
-            grand.color = RED;
-            if( ( compare( item, grand ) < 0 ) !=
-                    ( compare( item, parent ) < 0 ) )
-                parent = rotate( item, grand );  // Start dbl rotate
-            current = rotate( item, great );
-            current.color = BLACK;
+        if( parentNode.color == 0 ){
+            grandparentNode.color = 0;
+            if( ( compare( item, grandparentNode) < 0 ) != ( compare( item, parentNode) < 0 ) )
+                parentNode = rotateTree( item, grandparentNode);  // Start dbl rotate
+                currentNode = rotateTree( item, greatgrandparentNode);
+                currentNode.color = 1;
         }
-        header.right.color = BLACK; // Make root black
+        headNode.right.color = 1; // Make root black
     }
-
 
     public boolean isEmpty( ) {
-        return header.right == nullNode;
+        return headNode.right == nullNode;
     }
 
-    public void printTree( ) {
-        printTree( header.right );
-    }
-
-    private void printTree( RBNode<T> t ) {
-        if( t != nullNode ) {
-            printTree( t.left );
-            System.out.println( t.element );
-            printTree( t.right );
-        }
-    }
-
-    public int height (RBTree<T> redBlackTree){
-        if (redBlackTree.isEmpty()) return -1;
-        else if(redBlackTree.getLeft().isEmpty() && redBlackTree.getRight().isEmpty()) return 1 ;
-        else if(redBlackTree.getRight().isEmpty()) return 1 + height(redBlackTree.getLeft());
-        else if(redBlackTree.getLeft().isEmpty()) return 1 + height(redBlackTree.getRight());
-        else {
-            int hLeft = height(redBlackTree.getLeft());
-            int hRight = height(redBlackTree.getRight());
-
-            if(hLeft > hRight) return 1 + hLeft;
-            else if (hLeft < hRight) return 1 + hRight;
-            else return 1 + hLeft; //both are the same height
-        }
-    }
-    public Comparable<T> find( Comparable<T> x ) {
+    public Comparable<T> search(Comparable<T> x ) {
         nullNode.element = (T) x;
-        current = header.right;
+        currentNode = headNode.right;
 
         for( ; ; ) {
-            if( x.compareTo( current.element ) < 0 )
-                current = current.left;
-            else if( x.compareTo( current.element ) > 0 )
-                current = current.right;
-            else if( current != nullNode )
-                return (Comparable<T>) current.element;
+            if( x.compareTo( currentNode.element ) < 0 )
+                currentNode = currentNode.left;
+            else if( x.compareTo( currentNode.element ) > 0 )
+                currentNode = currentNode.right;
+            else if( currentNode != nullNode )
+                return (Comparable<T>) currentNode.element;
             else
                 return null;
         }
     }
 
-    public int countNodes() {
-        return countNodes(header.right);
-
-    }
-
-    private int countNodes(RBNode<T> r) {
-        if (r == nullNode)
-            return 0;
-        else {
-            int l = 1;
-            l += countNodes(r.left);
-            l += countNodes(r.right);
-            return l;
-        }
-    }
-
+    //public method that calls private recursive method
     public int height() {
-        return height(header.right);
-
+        return height(headNode.right, 0);
     }
 
-    private int height(RBNode<T> r) {
-        if (r == nullNode)
+    private int height(RBNode<T> r, int counter) {
+        if (r == nullNode && counter == 0)
+            return -1;
+        else if(r == nullNode){
             return 0;
+        }
         else {
-            int hLeft = height(r.left);
-            int hRight = height(r.right);
+            int hLeft = height(r.left,++counter);
+            int hRight = height(r.right, ++counter);
 
             if(hLeft > hRight) return 1 + hLeft;
             else if (hLeft < hRight) return 1 + hRight;
-            else return 1 + hLeft;
+            else return 1 + hLeft;  //both are the same height, so either one works
         }
     }
 }

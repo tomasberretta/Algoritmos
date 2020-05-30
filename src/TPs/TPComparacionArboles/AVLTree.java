@@ -29,7 +29,7 @@ class AVLTree <T extends Comparable<T>>{
 
     private int getHeight(AVLNode<T> doubleNode) {
         if (doubleNode == null)
-            return 0;
+            return -1;
         return doubleNode.height;
     }
 

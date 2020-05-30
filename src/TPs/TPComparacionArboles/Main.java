@@ -14,6 +14,14 @@ public class Main {
         System.out.println("BS Height: " +BSTree.height());
         RBTree<Integer> RBTree = generateRedBlackTree(arrayNumbers);
         System.out.println("RedBlack Height: " + RBTree.height());
+        //todo terminar tabla
+        int[] random10 = generateRandomIntArray(10, arrayNumbers);
+        System.out.println("Number \t BST \t AVL \t RBT");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(random10[i] +"\t"+ "?"+"\t"+ "?"+"\t"+ "?");
+        }
+        System.out.println("Average \t ? \t ? \t ?");
+        //todo repetir todo 10 veces y sacar promedios
     }
 
     public static int[] generateRandomIntArray (int n){
@@ -26,6 +34,14 @@ public class Main {
                     arrayNumbers[j] = (int)(Math.random()* ((100000 - 1) + 1)) + 1;
                 }
             }
+        }
+        return arrayNumbers;
+    }
+
+    public static int[] generateRandomIntArray (int n, int[] array){
+        int[] arrayNumbers = new int[n];
+        for (int i = 0; i < 10; i++) {
+            arrayNumbers[i] = array[(int)(Math.random()* ((array.length) + 1))];
         }
         return arrayNumbers;
     }
