@@ -122,7 +122,11 @@ public class BinarySearchTree <T>{
         return doubleNode;
     }
 
-    public int height (BinarySearchTree<T> binarySearchTree){
+    public int height (){
+        return height(this);
+    }
+
+    private int height (BinarySearchTree<T> binarySearchTree){
         if (binarySearchTree.isEmpty()) return -1;
         else if(binarySearchTree.getLeft().isEmpty() && binarySearchTree.getRight().isEmpty()) return 1 ;
         else if(binarySearchTree.getRight().isEmpty()) return 1 + height(binarySearchTree.getLeft());

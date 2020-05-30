@@ -3,7 +3,14 @@ package TPs.TPComparacionArboles;
 public class RBTree<T> {
 
     private RBNode<T> header;
-    private RBNode<T> nullNode;
+    private static RBNode nullNode;
+
+    static
+    {
+        nullNode = new RBNode(0);
+        nullNode.left = nullNode;
+        nullNode.right = nullNode;
+    }
 
     private static final int BLACK = 1;
     private static final int RED   = 0;
@@ -155,6 +162,40 @@ public class RBTree<T> {
                 return (Comparable<T>) current.element;
             else
                 return null;
+        }
+    }
+
+    public int countNodes() {
+        return countNodes(header.right);
+
+    }
+
+    private int countNodes(RBNode<T> r) {
+        if (r == nullNode)
+            return 0;
+        else {
+            int l = 1;
+            l += countNodes(r.left);
+            l += countNodes(r.right);
+            return l;
+        }
+    }
+
+    public int height() {
+        return height(header.right);
+
+    }
+
+    private int height(RBNode<T> r) {
+        if (r == nullNode)
+            return 0;
+        else {
+            int hLeft = height(r.left);
+            int hRight = height(r.right);
+
+            if(hLeft > hRight) return 1 + hLeft;
+            else if (hLeft < hRight) return 1 + hRight;
+            else return 1 + hLeft;
         }
     }
 }

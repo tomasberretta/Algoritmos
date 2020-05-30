@@ -9,12 +9,11 @@ public class Main {
     public static void main(String[] args) {
         int[] arrayNumbers = generateRandomIntArray(1000);
         AVLTree<Integer> AVLTree = generateAVLTree(arrayNumbers);
-        System.out.println("AVL Height: " + AVLTree.getHeight(AVLTree.root));
+        System.out.println("AVL Height: " + AVLTree.getHeight());
         BinarySearchTree<Integer> BSTree = generateBSTree(arrayNumbers);
-        System.out.println("BS Height: " +BSTree.height(BSTree));
+        System.out.println("BS Height: " +BSTree.height());
         RBTree<Integer> RBTree = generateRedBlackTree(arrayNumbers);
-        System.out.println("RedBlack Height: 8"); //+ RBTree.height(RBTree.getRoot()));
-        //RBTree.printTree();
+        System.out.println("RedBlack Height: " + RBTree.height());
     }
 
     public static int[] generateRandomIntArray (int n){

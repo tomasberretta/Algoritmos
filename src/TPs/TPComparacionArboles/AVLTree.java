@@ -23,7 +23,11 @@ class AVLTree <T extends Comparable<T>>{
         return new AVLTree<>(root.right);
     }
 
-    int getHeight(DoubleNode<T> doubleNode) {
+    int getHeight(){
+        return getHeight(this.root);
+    }
+
+    private int getHeight(DoubleNode<T> doubleNode) {
         if (doubleNode == null)
             return 0;
         return doubleNode.height;
