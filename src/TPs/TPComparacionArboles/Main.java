@@ -12,8 +12,9 @@ public class Main {
         System.out.println("AVL Height: " + AVLTree.getHeight(AVLTree.root));
         BinarySearchTree<Integer> BSTree = generateBSTree(arrayNumbers);
         System.out.println("BS Height: " +BSTree.height(BSTree));
-        RedBlackTree<Integer> RBTree = generateRedBlackTree(arrayNumbers);
-        System.out.println("RedBlack Height: 8");
+        RBTree<Integer> RBTree = generateRedBlackTree(arrayNumbers);
+        System.out.println("RedBlack Height: 8"); //+ RBTree.height(RBTree.getRoot()));
+        //RBTree.printTree();
     }
 
     public static int[] generateRandomIntArray (int n){
@@ -50,8 +51,8 @@ public class Main {
         return AVLTree;
     }
 
-    public static RedBlackTree<Integer> generateRedBlackTree (int[] intArray){
-        RedBlackTree<Integer> RBTree = new RedBlackTree<>();
+    public static RBTree<Integer> generateRedBlackTree (int[] intArray){
+        RBTree<Integer> RBTree = new RBTree<>();
         long startTime = System.nanoTime();
         for (int value : intArray) {
             RBTree.insert(value);
