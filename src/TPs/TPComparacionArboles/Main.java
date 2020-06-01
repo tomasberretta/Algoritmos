@@ -21,20 +21,23 @@ public class Main {
 
 
     public static void main(String[] args) {
-        timesAVL = new long[11];
-        timesBS = new long[11];
-        timesRB = new long[11];
-        triesAVL = new long[11];
-        triesBS = new long[11];
-        triesRB = new long[11];
-        heightsAVL = new long[11];
-        heightsBS = new long[11];
-        heightsRB = new long[11];
-        averageTriesAVL = new double[11];
-        averageTriesBS = new double[11];
-        averageTriesRB = new double[11];
-        hacerEjercicio(11);
+        initializeArrays(10);
+        hacerEjercicio(1); //can be changed to 10 to repeat exercise
+    }
 
+    public static void initializeArrays(int n){
+        timesAVL = new long[n];
+        timesBS = new long[n];
+        timesRB = new long[n];
+        triesAVL = new long[n];
+        triesBS = new long[n];
+        triesRB = new long[n];
+        heightsAVL = new long[n];
+        heightsBS = new long[n];
+        heightsRB = new long[n];
+        averageTriesAVL = new double[n];
+        averageTriesBS = new double[n];
+        averageTriesRB = new double[n];
     }
 
     public static void hacerEjercicio(int n){
@@ -52,7 +55,7 @@ public class Main {
             System.out.println("Time to construct RB Tree: " + timesRB[i]+ " nanoseconds");
             System.out.println("RedBlack Height: " + heightInRBTree(RBTree,i));
 
-            //Parte de la tabla
+            //Table
             int[] random10 = generateRandomIntArray(10, arrayNumbers);
 
             if(i == 0) System.out.println("Number \t BST \t AVL \t RBT");
@@ -67,8 +70,9 @@ public class Main {
             averageTriesBS[i] = averageTries[0];
             averageTriesAVL[i] = averageTries[1];
             averageTriesRB[i] = averageTries[2];
+            //Table of average 10 times
             if(i == 0) System.out.println("Average \t "+ averageTries[0] +" \t "+ averageTries[1] +" \t "+ averageTries[2]);
-            if (i == n-1){
+            if (i == n-1 && i != 0){
                 double [] averageHeight = averageHeight();
                 double [] averageTriesAv = averageTriesAv();
                 double [] averageTime = averageTime();
@@ -97,7 +101,7 @@ public class Main {
     public static int[] generateRandomIntArray (int n, int[] array){
         int[] arrayNumbers = new int[n];
         for (int i = 0; i < 10; i++) {
-            arrayNumbers[i] = array[(int)(Math.random()* ((array.length) + 1))];
+            arrayNumbers[i] = array[(int)(Math.random()* ((array.length-1) + 1))];
         }
         return arrayNumbers;
     }
@@ -273,6 +277,4 @@ public class Main {
         averageTime[2]= (double)sumHeights[2]/11;
         return averageTime;
     }
-
-
 }
