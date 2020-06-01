@@ -58,6 +58,17 @@ class AVLTree <T extends Comparable<T>>{
         return y;
     }
 
+    int searchWithCounter(T data){
+        return searchWithCounter(this.root, data, 0);
+    }
+    private int searchWithCounter (AVLNode<T> doubleNode, T data, int counter){
+        if (doubleNode == null) return counter;
+        if(data.compareTo(doubleNode.data) < 0) return searchWithCounter(doubleNode.left, data, ++counter);
+        else if (data.compareTo(doubleNode.data) > 0) return searchWithCounter(doubleNode.right, data, ++counter);
+        else if(data.compareTo(doubleNode.data) == 0) return counter;
+        return counter;
+    }
+
     T search(T data){
         return search(this.root, data);
     }

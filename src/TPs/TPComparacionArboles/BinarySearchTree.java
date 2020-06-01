@@ -70,6 +70,18 @@ public class BinarySearchTree <T>{
         else
             return isInTree(doubleNode.right, data);
     }
+    public int searchWithCounter(Comparable<T> data){
+        return searchWithCounter(root, data, 0);
+    }
+    private int searchWithCounter(DoubleNode <T> doubleNode, Comparable<T> data, int counter){
+        if (data.compareTo(doubleNode.data)== 0)
+            return counter;
+        else if (data.compareTo( doubleNode.data)< 0)
+            return searchWithCounter(doubleNode.left, data, ++counter);
+        else
+            return searchWithCounter(doubleNode.right, data, ++counter);
+    }
+
     public T search(Comparable<T> data){
         return search(root, data).data;
     }

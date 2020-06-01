@@ -6,7 +6,7 @@ public class RBTree<T> {
     private static RBNode nullNode;
 
     static {
-        nullNode = new RBNode(0);
+        nullNode = new RBNode(null);
         nullNode.left = nullNode;
         nullNode.right = nullNode;
     }
@@ -53,7 +53,9 @@ public class RBTree<T> {
         nullNode.element = (T) item;
 
         while(compare( item, currentNode) != 0) {
-            greatgrandparentNode = grandparentNode; grandparentNode = parentNode; parentNode = currentNode;
+            greatgrandparentNode = grandparentNode;
+            grandparentNode = parentNode;
+            parentNode = currentNode;
             currentNode = compare( item, currentNode) < 0 ?
                     currentNode.left : currentNode.right;
 
@@ -132,6 +134,29 @@ public class RBTree<T> {
                 return null;
         }
     }
+
+    public int searchWithCounter(Comparable<T> x ) {
+        int counter = 0;
+        nullNode.element = (T) x;
+        currentNode = headNode.right;
+
+        for( ; ; ) {
+            if( x.compareTo( currentNode.element ) < 0 ){
+                currentNode = currentNode.left;
+                counter++;
+            }
+            else if( x.compareTo( currentNode.element ) > 0 ){
+                currentNode = currentNode.right;
+                counter++;
+            }
+            else if( currentNode != nullNode ){
+                return counter;
+            }
+            else
+                counter++;
+        }
+    }
+
 
     //public method that calls private recursive method
     public int height() {
