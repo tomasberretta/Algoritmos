@@ -70,12 +70,12 @@ public class Main {
             averageTriesBS[i] = averageTries[0];
             averageTriesAVL[i] = averageTries[1];
             averageTriesRB[i] = averageTries[2];
-            //Table of average 10 times
             if(i == 0) System.out.println("Average \t "+ averageTries[0] +" \t "+ averageTries[1] +" \t "+ averageTries[2]);
+            //Table of average 10 times
             if (i == n-1 && i != 0){
-                double [] averageHeight = averageHeight();
-                double [] averageTriesAv = averageTriesAv();
-                double [] averageTime = averageTime();
+                double [] averageHeight = averageHeight(n);
+                double [] averageTriesAv = averageTriesAv(n);
+                double [] averageTime = averageTime(n);
                 System.out.println("\n"+ "Average \t BST \t AVL \t RBT");
                 System.out.println("Height \t"+ averageHeight[0] +"\t"+ averageHeight[1]+"\t"+ averageHeight[2]);
                 System.out.println("Tries \t"+ averageTriesAv[0] +"\t"+ averageTriesAv[1]+"\t"+ averageTriesAv[2]);
@@ -171,31 +171,31 @@ public class Main {
         return sumOfElements(averageTriesBS,averageTriesAVL,averageTriesRB);
     }
 
-    public static double[] averageTriesAv(){
-        return average(sumTriesAverage());
+    public static double[] averageTriesAv(int n){
+        return average(sumTriesAverage(), n);
     }
 
     public static int[] sumTimes (){
         return sumOfElements(timesBS,timesAVL,timesRB);
     }
 
-    public static double[] averageTime(){
-        return average(sumTimes());
+    public static double[] averageTime(int n){
+        return average(sumTimes(), n);
     }
 
     public static int[] sumHeights (){
         return sumOfElements(heightsBS,heightsAVL,heightsRB);
     }
 
-    public static double[] averageHeight(){
-        return average(sumHeights());
+    public static double[] averageHeight(int n){
+        return average(sumHeights(), n);
     }
 
-    public static double[] average(int[] array){
+    public static double[] average(int[] array, int n){
         double[] averageTries = new double[3];
-        averageTries[0]= (double)array[0]/11;
-        averageTries[1]= (double)array[1]/11;
-        averageTries[2]= (double)array[2]/11;
+        averageTries[0]= (double)array[0]/n;
+        averageTries[1]= (double)array[1]/n;
+        averageTries[2]= (double)array[2]/n;
         return averageTries;
     }
 
