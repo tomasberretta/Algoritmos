@@ -22,7 +22,7 @@ public class Main {
 
     public static void main(String[] args) {
         initializeArrays(10);
-        hacerEjercicio(1); //can be changed to 10 to repeat exercise
+        doExercise(1); //can be changed to 10 to repeat exercise, avl may fail sometimes if so run again.
     }
 
     public static void initializeArrays(int n){
@@ -40,7 +40,7 @@ public class Main {
         averageTriesRB = new double[n];
     }
 
-    public static void hacerEjercicio(int n){
+    public static void doExercise(int n){
 
         for (int i = 0; i < n; i++) {
             if(i != 0) System.out.println("\n"+"Repetition number: " + i + "\n");
@@ -136,17 +136,14 @@ public class Main {
         return RBTree;
     }
 
-    public static int searchElementInBSTree (int n, BinarySearchTree<Integer> bsTree, int i){
-        triesBS[i] = bsTree.searchWithCounter(n);
-        return bsTree.searchWithCounter(n);
+    public static void searchElementInBSTree (int n, BinarySearchTree<Integer> bsTree, int i){
+        triesBS[i] = bsTree.searchWithCounter(n);//result is added directly to array, no need to return anything
     }
-    public static int searchElementInAVLTree (int n, AVLTree<Integer> avlTree, int i){
-        triesAVL[i] = avlTree.searchWithCounter(n);
-        return avlTree.searchWithCounter(n);
+    public static void searchElementInAVLTree (int n, AVLTree<Integer> avlTree, int i){
+        triesAVL[i] = avlTree.searchWithCounter(n);//result is added directly to array, no need to return anything
     }
-    public static int searchElementInRBTree (int n, RBTree<Integer> rbTree, int i){
-        triesRB[i] = rbTree.searchWithCounter(n);
-        return rbTree.searchWithCounter(n);
+    public static void searchElementInRBTree (int n, RBTree<Integer> rbTree, int i){
+        triesRB[i] = rbTree.searchWithCounter(n);//result is added directly to array, no need to return anything
     }
 
     public static int heightInBSTree (BinarySearchTree<Integer> bsTree, int i){
@@ -162,119 +159,90 @@ public class Main {
         return rbTree.height();
     }
 
-    public static int[] sumTries (){
-        int[] sumTries = new int[3];
-        int result = 0;
-        for (int i = 0; i < 10; i++) {
-            result += triesBS[i];
-        }
-        sumTries[0] = result;
-        result = 0;
-        for (int i = 0; i < 10; i++) {
-            result += triesAVL[i];
-        }
-        sumTries[1] = result;
-        result = 0;
-        for (int i = 0; i < 10; i++) {
-            result += triesRB[i];
-        }
-        sumTries[2] = result;
-        return sumTries;
+    public static double[] averageTries(){
+        return averageForSearchElements(sumTries());
     }
 
-    public static double[] averageTries(){
-        double[] averageTries = new double[3];
-        int [] sumTries = sumTries();
-        averageTries[0]= (double)sumTries[0]/10;
-        averageTries[1]= (double)sumTries[1]/10;
-        averageTries[2]= (double)sumTries[2]/10;
-        return averageTries;
+    public static int[] sumTries (){
+        return sumOfElements(triesBS, triesAVL, triesRB);
     }
 
     public static int[] sumTriesAverage (){
+        return sumOfElements(averageTriesBS,averageTriesAVL,averageTriesRB);
+    }
+
+    public static double[] averageTriesAv(){
+        return average(sumTriesAverage());
+    }
+
+    public static int[] sumTimes (){
+        return sumOfElements(timesBS,timesAVL,timesRB);
+    }
+
+    public static double[] averageTime(){
+        return average(sumTimes());
+    }
+
+    public static int[] sumHeights (){
+        return sumOfElements(heightsBS,heightsAVL,heightsRB);
+    }
+
+    public static double[] averageHeight(){
+        return average(sumHeights());
+    }
+
+    public static double[] average(int[] array){
+        double[] averageTries = new double[3];
+        averageTries[0]= (double)array[0]/11;
+        averageTries[1]= (double)array[1]/11;
+        averageTries[2]= (double)array[2]/11;
+        return averageTries;
+    }
+
+    public static double[] averageForSearchElements(int[] array){
+        double[] averageTries = new double[3];
+        averageTries[0]= (double)array[0]/10;
+        averageTries[1]= (double)array[1]/10;
+        averageTries[2]= (double)array[2]/10;
+        return averageTries;
+    }
+
+    public static int[] sumOfElements(long[] bsArray, long[] avlArray, long[] rbArray){
         int[] sumAverageTries = new int[3];
         int result = 0;
         for (int i = 0; i < 10; i++) {
-            result += averageTriesBS[i];
+            result += bsArray[i];
         }
         sumAverageTries[0] = result;
         result = 0;
         for (int i = 0; i < 10; i++) {
-            result += averageTriesAVL[i];
+            result += avlArray[i];
         }
         sumAverageTries[1] = result;
         result = 0;
         for (int i = 0; i < 10; i++) {
-            result += averageTriesRB[i];
+            result += rbArray[i];
         }
         sumAverageTries[2] = result;
         return sumAverageTries;
     }
-
-    public static double[] averageTriesAv(){
-        double[] averageTriesAv = new double[3];
-        int [] sumTriesAv = sumTriesAverage();
-        averageTriesAv[0]= (double)sumTriesAv[0]/11;
-        averageTriesAv[1]= (double)sumTriesAv[1]/11;
-        averageTriesAv[2]= (double)sumTriesAv[2]/11;
-        return averageTriesAv;
-    }
-
-    public static long[] sumTimes (){
-        long[] sumTimes = new long[3];
-        long result = 0;
-        for (int i = 0; i < 10; i++) {
-            result += timesBS[i];
-        }
-        sumTimes[0] = result;
-        result = 0;
-        for (int i = 0; i < 10; i++) {
-            result += timesAVL[i];
-        }
-        sumTimes[1] = result;
-        result = 0;
-        for (int i = 0; i < 10; i++) {
-            result += timesRB[i];
-        }
-        sumTimes[2] = result;
-        return sumTimes;
-    }
-
-    public static double[] averageTime(){
-        double[] averageTime = new double[3];
-        long [] sumTimes = sumTimes();
-        averageTime[0]= (double)sumTimes[0]/11;
-        averageTime[1]= (double)sumTimes[1]/11;
-        averageTime[2]= (double)sumTimes[2]/11;
-        return averageTime;
-    }
-
-    public static int[] sumHeights (){
-        int[] sumHeights = new int[3];
+    public static int[] sumOfElements(double[] bsArray, double[] avlArray, double[] rbArray){
+        int[] sumAverageTries = new int[3];
         int result = 0;
         for (int i = 0; i < 10; i++) {
-            result += heightsBS[i];
+            result += bsArray[i];
         }
-        sumHeights[0] = result;
+        sumAverageTries[0] = result;
         result = 0;
         for (int i = 0; i < 10; i++) {
-            result += heightsAVL[i];
+            result += avlArray[i];
         }
-        sumHeights[1] = result;
+        sumAverageTries[1] = result;
         result = 0;
         for (int i = 0; i < 10; i++) {
-            result += heightsRB[i];
+            result += rbArray[i];
         }
-        sumHeights[2] = result;
-        return sumHeights;
-    }
-
-    public static double[] averageHeight(){
-        double[] averageTime = new double[3];
-        int [] sumHeights = sumHeights();
-        averageTime[0]= (double)sumHeights[0]/11;
-        averageTime[1]= (double)sumHeights[1]/11;
-        averageTime[2]= (double)sumHeights[2]/11;
-        return averageTime;
+        sumAverageTries[2] = result;
+        return sumAverageTries;
     }
 }
