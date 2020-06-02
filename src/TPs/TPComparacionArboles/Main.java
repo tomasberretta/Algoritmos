@@ -191,19 +191,15 @@ public class Main {
         return average(sumHeights(), n);
     }
 
+    public static double[] averageForSearchElements(int[] array){
+        return average(array, 10);
+    }
+
     public static double[] average(int[] array, int n){
         double[] averageTries = new double[3];
         averageTries[0]= (double)array[0]/n;
         averageTries[1]= (double)array[1]/n;
         averageTries[2]= (double)array[2]/n;
-        return averageTries;
-    }
-
-    public static double[] averageForSearchElements(int[] array){
-        double[] averageTries = new double[3];
-        averageTries[0]= (double)array[0]/10;
-        averageTries[1]= (double)array[1]/10;
-        averageTries[2]= (double)array[2]/10;
         return averageTries;
     }
 
