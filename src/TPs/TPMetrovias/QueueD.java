@@ -1,9 +1,9 @@
 package TPs.TPMetrovias;
 
-/**********************************************************************************************************************
- ************** @author Grupo 6 : Agustina Abalo, Tomas Berretta, Pedro Bogunovich, Tomas Bruno************************
- *********************************************************************************************************************/
 
+/**
+ * @author Tomas Berretta
+ **/
 
 public class QueueD<T>{
     Node<T> front;
@@ -27,8 +27,8 @@ public class QueueD<T>{
             length++;
             return;
         }
-        rear = node1;
-        front.pointer = rear;
+        rear.pointer = node1;
+        rear = rear.pointer;
         size++;
         length++;
     }
