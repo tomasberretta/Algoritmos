@@ -16,31 +16,27 @@ public class MSystem {
         clients = new StackD<>();
     }
 
-    public int meanTime (){
-        StackD<Client> temp = new StackD<>();
-        int counter = 0;
-        int clientsSize = clients.size;
-        for (int i = 0; i < clientsSize; i++) {
-            if(!clients.isEmpty()){
-                Client toPop = clients.peek();
-                temp.push(toPop);
-                counter += toPop.getWaitTime();
-                clients.pop();
-            }
+    public QueueD<Double> getMeanTime (){
+        QueueD<Double> meanTimeWindows = new QueueD<>();
+        for (Window window : windows) {
+            meanTimeWindows.enqueue(window.getMeanWatingTime());
         }
-        clients = temp;
-        return counter/clients.size;
+        return meanTimeWindows;
     }
 
-    public int getIncome () {
-        int income = 0;
+    public QueueD<Double> getIncome () {
+        QueueD<Double> incomeWindows = new QueueD<>();
         for (Window window : windows) {
-            income += window.getTotalIncome();
+            incomeWindows.enqueue(window.getTotalIncome());
         }
-        return income;
+        return incomeWindows;
     }
 
     public void forward30sec() {
+        /*
+         Si la ventanilla no esta vacía hay un 50% de que se atienda la persona que esta primera en la cola.
+         Luego se encolan en ventanillas al azar 5 personas nuevas.
+         */
         for (Window window : windows) {
             if (!window.isEmpty()) {
                 window.increaseWaitTimeClients();

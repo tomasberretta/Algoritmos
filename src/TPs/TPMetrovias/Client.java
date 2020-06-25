@@ -10,6 +10,7 @@ public class Client {
 
     public Client(){
         waitTime = 0;
+        // Asigna un número de ticket random entre 10000 y 100000 para que sea de 5 dígitos
         ticketNumber = (int)(Math.random() * ((100000 - 10000) + 1)) + 10000;
     }
 

@@ -34,16 +34,17 @@ public class Main {
                     System.exit(0);
                     break;
                 case 3:
-                    System.out.println("Income: " + msystem.getIncome());
-                    System.out.println("Wait time: " + msystem.meanTime());
+                    QueueD<Double> meanTimeWindows = msystem.getMeanTime();
+                    QueueD<Double> incomeWindows = msystem.getIncome();
+                    for (int i = 0; i < numWindow; i++) {
+                        System.out.println("Window: " + (i+1) + "- Income: "+ incomeWindows.dequeue()+
+                                "- Mean Waiting Time: "+ meanTimeWindows.dequeue());
+                    }
                     break;
                 default :
                     System.out.println("Invalid option");
                     break;
             }
         }
-
     }
-
-
 }
