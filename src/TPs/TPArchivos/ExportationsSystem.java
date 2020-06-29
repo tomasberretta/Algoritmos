@@ -4,6 +4,7 @@ package TPs.TPArchivos;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 public class ExportationsSystem {
@@ -12,15 +13,12 @@ public class ExportationsSystem {
     private static String salesFileName = "Sales File";
 
     public static void main(String[] args) {
-        int n = 30;
-        destinations = new String[n];
-        for (int i = 0; i < n; i++) {
-            destinations[i] = randomString();
-            for (int j = 0; j < i; j++) {
-                if (destinations[i].equals(destinations[j])) {
-                    destinations[j] = randomString();
-                }
-            }
+        String dName = "Destinations File";
+        try {
+            DestinationFile destinationFile = new DestinationFile(dName);
+            readDestinations(destinationFile);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -59,6 +57,33 @@ public class ExportationsSystem {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static void writeDestinations (DestinationFile dfile){
+        int n = 1;
+        destinations = new String[n];
+        try {
+            for (int i = 0; i < n; i++) {
+                destinations[i] = randomString();
+                dfile.write(new Destination(randomString(), ""));
+            }
+            dfile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void readDestinations (DestinationFile dfile){
+        int n = 1;
+        try {
+            for (int i = 0; i < n; i++) {
+                System.out.println(dfile.read().getDestinationCode());
+            }
+            dfile.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
