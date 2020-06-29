@@ -101,7 +101,7 @@ public class TPBinaryTrees <T>{
     }
     public HashSet<T> setOfElements (BinaryTree<T> aBinaryTree, HashSet<T> setOfElements){
         if (aBinaryTree.isEmpty()) return setOfElements;
-        else if (aBinaryTree.getRight().isEmpty() && aBinaryTree.getRight().isEmpty()){
+        else if (aBinaryTree.getRight().isEmpty() && aBinaryTree.getLeft().isEmpty()){
             setOfElements.add(aBinaryTree.getRoot());
             return setOfElements;
         }else if(aBinaryTree.getRight().isEmpty()){

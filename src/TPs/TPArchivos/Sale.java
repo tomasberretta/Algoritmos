@@ -19,6 +19,16 @@ public class Sale {
         this.year = year;
     }
 
+    public Sale(String destinationCode) {
+        this.destinationCode = destinationCode;
+        this.code = (int)(Math.random()*100);
+        this.amount = (int)(Math.random()*100);
+        this.priceInDolars = (int)(Math.random()*10);
+        this.day = (int)(Math.random()*30);
+        this.month = (int)(Math.random()*12);
+        this.year = 2020;
+    }
+
     public String getDestinationCode() {
         return destinationCode;
     }

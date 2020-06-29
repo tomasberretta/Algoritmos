@@ -3,23 +3,31 @@ package TPs.TPArchivos;
 //todo otros archivos
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
 public class ExportationsSystem {
-    static String[] destinations;
+    static Destination[] destinations;
+    static int n;
 
     private static String salesFileName = "Sales File";
 
     public static void main(String[] args) {
+        n = 30;
         String dName = "Destinations File";
+        destinations = new Destination[n];
+
         try {
             DestinationFile destinationFile = new DestinationFile(dName);
+            writeDestinations(destinationFile);
             readDestinations(destinationFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        generateSalesFile();
     }
 
     public static String randomString (){
@@ -44,11 +52,12 @@ public class ExportationsSystem {
 
             FileWriter fW = new FileWriter(reportFile);
             long size = fileS.quantReg();
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < destinations.length; j++) {
-                    if(fileS.searchByDestination(destinations[i]).equals(destinations[j])){
+            for (int i = 0; i < destinations.length; i++) {
+                fW.write(destinations[i].getDestinationCode() + "\n");
+                for (int j = 0; j < size; j++) {
+                    //if(fileS.searchByDestination(destinations[i]).equals(destinations[j])){
                         //todo
-                    }
+                    //}
                 }
             }
 
@@ -60,15 +69,24 @@ public class ExportationsSystem {
         }
     }
 
+    public static void generateSalesFile(){
+        try {
+            SalesFile fileS = new SalesFile(salesFileName);
+            for (int i = 0; i < 1000; i++) {
+                int j = (int)(Math.random()*n);
+                fileS.write(new Sale(destinations[j].getDestinationCode()));
+            }
+            fileS.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void writeDestinations (DestinationFile dfile){
-        int n = 1;
-        destinations = new String[n];
         try {
             for (int i = 0; i < n; i++) {
-                destinations[i] = randomString();
                 dfile.write(new Destination(randomString(), ""));
             }
-            dfile.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,16 +94,13 @@ public class ExportationsSystem {
     }
 
     public static void readDestinations (DestinationFile dfile){
-        int n = 1;
         try {
             for (int i = 0; i < n; i++) {
-                System.out.println(dfile.read().getDestinationCode());
+                destinations[i] = dfile.read();
             }
             dfile.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-
-
 }

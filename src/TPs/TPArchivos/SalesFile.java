@@ -25,16 +25,20 @@ public class SalesFile {
         raf.writeInt(s.getYear());
     }
 
-    public Sale searchByDestination (String destinationCode) throws Exception{
+    public Sale[] searchByDestination (String destinationCode) throws Exception{
+        Sale[] sales = new Sale[30];
         long quant = sizeReg;
         start();
         Sale s;
         for (int i =0 ; i < quant;i++){
             s = read();
-            if(s.getDestinationCode().equals(destinationCode))
-                return s;
+            if(s.getDestinationCode().equals(destinationCode)){
+                for (int j = 0; j < sales.length; j++) {
+                    if(sales[j] == null) sales[j] = s;
+                }
+            }
         }
-        throw new Exception("Código erróneo");
+        return sales;
     }
 
     public Sale searchByMonth (int month) throws Exception{

@@ -23,9 +23,7 @@ public class DestinationFile {
     }
 
     public Destination read() throws IOException, ClassNotFoundException {
-        Destination destination = new Destination("", "");
-        if (ois.read() != -1) destination = (Destination)  ois.readObject();
-        return destination;
+        return  (Destination) ois.readObject();
     }
 
     public void close() throws IOException{
