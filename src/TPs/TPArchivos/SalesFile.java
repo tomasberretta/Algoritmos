@@ -26,31 +26,41 @@ public class SalesFile {
     }
 
     public Sale[] searchByDestination (String destinationCode) throws Exception{
-        Sale[] sales = new Sale[30];
-        long quant = sizeReg;
+        Sale[] sales = new Sale[1000];
+        long quant = quantReg();
         start();
         Sale s;
         for (int i =0 ; i < quant;i++){
             s = read();
             if(s.getDestinationCode().equals(destinationCode)){
                 for (int j = 0; j < sales.length; j++) {
-                    if(sales[j] == null) sales[j] = s;
+                    if(sales[j] == null) {
+                        sales[j] = s;
+                        break;
+                    }
                 }
             }
         }
         return sales;
     }
 
-    public Sale searchByMonth (int month) throws Exception{
-        long quant = sizeReg;
+    public Sale[] searchByMonth (int month) throws Exception{
+        Sale[] sales = new Sale[1000];
+        long quant = quantReg();
         start();
         Sale s;
         for (int i =0 ; i < quant;i++){
             s = read();
-            if(s.getMonth() == month)
-                return s;
+            if(s.getMonth() == month){
+                for (int j = 0; j < sales.length; j++) {
+                    if(sales[j] == null) {
+                        sales[j] = s;
+                        break;
+                    }
+                }
+            }
         }
-        throw new Exception("Código erróneo");
+        return sales;
     }
 
     public Sale read() throws IOException{

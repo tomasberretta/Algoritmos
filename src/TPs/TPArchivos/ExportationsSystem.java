@@ -1,7 +1,5 @@
 package TPs.TPArchivos;
 
-//todo otros archivos
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,6 +11,7 @@ public class ExportationsSystem {
     static int n;
 
     private static String salesFileName = "Sales File";
+    private static String quotationFileName = "Quotation File";
 
     public static void main(String[] args) {
         n = 30;
@@ -23,11 +22,55 @@ public class ExportationsSystem {
             DestinationFile destinationFile = new DestinationFile(dName);
             writeDestinations(destinationFile);
             readDestinations(destinationFile);
+            QuotationFile qFile = new QuotationFile(quotationFileName);
+
+            generateSalesFile();
+            generateQuotationFile(qFile);
+
+            Quotation[] quotations = qFile.getQuotations();
+
+            generateDestinationsReport(quotations);
+            generateQuotationReport(quotations);
+
+            qFile.close();
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
 
-        generateSalesFile();
+
+    }
+
+    private static void generateQuotationReport(Quotation[] quotations) {
+        try {
+            Sale s;
+            SalesFile fileS = new SalesFile(salesFileName);
+            File reportFile = new File("Report by Month");
+            FileWriter fW = new FileWriter(reportFile);
+
+            for (int i = 0; i < quotations.length; i++) {
+                fW.write("Month: " + (i+1) + "\n");
+
+                double totalPrice = 0;
+
+                Sale[] sales = fileS.searchByMonth(i);
+                for (int j = 0; j < sales.length; j++) {
+                    if(sales[j] == null) break;
+                    if(sales[j] != null) {
+                        for (int k = 0; k < quotations.length; k++) {
+                            if (quotations[k].getMonth() == sales[j].getMonth()) totalPrice += sales[j].getPriceInDolars()*sales[j].getAmount()*quotations[k].getDollarValue();
+                        }
+                    }
+                }
+                fW.write(totalPrice + "\n \n");
+            }
+
+            fW.close();
+            fileS.close();
+
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public static String randomString (){
@@ -44,21 +87,29 @@ public class ExportationsSystem {
         return buffer.toString();
     }
 
-    public void generateDestinationsReport() {
+    public static void generateDestinationsReport(Quotation[] quotations) {
         try {
             Sale s;
             SalesFile fileS = new SalesFile(salesFileName);
             File reportFile = new File("Report by Destination");
-
             FileWriter fW = new FileWriter(reportFile);
-            long size = fileS.quantReg();
+
             for (int i = 0; i < destinations.length; i++) {
-                fW.write(destinations[i].getDestinationCode() + "\n");
-                for (int j = 0; j < size; j++) {
-                    //if(fileS.searchByDestination(destinations[i]).equals(destinations[j])){
-                        //todo
-                    //}
+                String code = destinations[i].getDestinationCode();
+                fW.write(code + "\n");
+
+                double totalPrice = 0;
+
+                Sale[] sales = fileS.searchByDestination(code);
+                for (int j = 0; j < sales.length; j++) {
+                    if(sales[j] == null) break;
+                    if(sales[j] != null) {
+                        for (int k = 0; k < quotations.length; k++) {
+                            if (quotations[k].getMonth() == sales[j].getMonth()) totalPrice += sales[j].getPriceInDolars()*sales[j].getAmount()*quotations[k].getDollarValue();
+                        }
+                    }
                 }
+                fW.write(totalPrice + "\n \n");
             }
 
             fW.close();
@@ -78,6 +129,18 @@ public class ExportationsSystem {
             }
             fileS.close();
         } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void generateQuotationFile(QuotationFile qFile){
+        try {
+            for (int i = 0; i < 12; i++) {
+                qFile.write(new Quotation(i, Math.random() * ((100 - 50) + 1) + 50));
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -88,6 +151,7 @@ public class ExportationsSystem {
                 dfile.write(new Destination(randomString(), ""));
             }
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
 
@@ -100,6 +164,7 @@ public class ExportationsSystem {
             }
             dfile.close();
         } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }

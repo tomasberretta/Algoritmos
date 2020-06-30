@@ -26,9 +26,19 @@ public class QuotationFile {
     }
 
     public void close() throws IOException{
-        fos.close();
         oos.close();
-        fis.close();
         ois.close();
+    }
+
+    public Quotation[] getQuotations() {
+        Quotation[] quotations = new Quotation[12];
+        for (int i = 0; i < quotations.length; i++) {
+            try {
+                quotations[i] = read();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return quotations;
     }
 }
