@@ -1,10 +1,14 @@
 package TPs.TPArchivos;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+
+/**********************************************************************************************************************
+ ************** @author Grupo 6 : Agustina Abalo, Tomas Berretta, Pedro Bogunovich, Tomas Bruno************************
+ *********************************************************************************************************************/
+
 
 public class ExportationsSystem {
     static Destination[] destinations;

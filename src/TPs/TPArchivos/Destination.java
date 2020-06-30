@@ -2,6 +2,11 @@ package TPs.TPArchivos;
 
 import java.io.Serializable;
 
+/**********************************************************************************************************************
+ ************** @author Grupo 6 : Agustina Abalo, Tomas Berretta, Pedro Bogunovich, Tomas Bruno************************
+ *********************************************************************************************************************/
+
+
 public class Destination implements Serializable {
     String destinationCode;
     String description;

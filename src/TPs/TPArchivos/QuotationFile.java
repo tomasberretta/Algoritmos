@@ -2,6 +2,10 @@ package TPs.TPArchivos;
 
 import java.io.*;
 
+/**********************************************************************************************************************
+ ************** @author Grupo 6 : Agustina Abalo, Tomas Berretta, Pedro Bogunovich, Tomas Bruno************************
+ *********************************************************************************************************************/
+
 public class QuotationFile {
     private File f;
     private FileOutputStream fos;

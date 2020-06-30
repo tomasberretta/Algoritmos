@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/**********************************************************************************************************************
+ ************** @author Grupo 6 : Agustina Abalo, Tomas Berretta, Pedro Bogunovich, Tomas Bruno************************
+ *********************************************************************************************************************/
+
 public class SalesFile {
     private File f;
     private RandomAccessFile raf;
